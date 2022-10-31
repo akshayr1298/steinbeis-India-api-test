@@ -47,5 +47,18 @@ const purchaseProduct = async (req, res, next) => {
 };
 
 
+const purchaseDetail = async(req,res,next)=>{
 
-export { createUser, purchaseProduct};
+  try {
+    const purchasedetails = await User.find().populate('product.product_id')
+    res.status(200).json({purchasedetails})
+    
+  } catch (error) {
+    console.log(error.message);
+    next(error)
+    
+  }
+}
+
+
+export { createUser, purchaseProduct,purchaseDetail};
